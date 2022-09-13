@@ -2,6 +2,7 @@ package com.example.musical_instrument_41pbykova_mobile1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void AddMI(View v){
+        startActivity(new Intent(this, Add_MI.class));
     }
 
     public void GetTextFormSql(View v)
@@ -54,11 +59,21 @@ public class MainActivity extends AppCompatActivity {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
-                 /*   TableRow tr = new TableRow(MainActivity.this);
+                   TableRow tr = new TableRow(MainActivity.this);
                     TextView Name = new TextView(MainActivity.this);
                     TextView Manufacturers = new TextView(MainActivity.this);
                     TextView ManufacturerCountry = new TextView(MainActivity.this);
-                    TextView Price = new TextView(MainActivity.this);*/
+                    TextView Price = new TextView(MainActivity.this);
+
+                    tr.addView(Name, new TableRow.LayoutParams(
+                            TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+                    tr.addView(Manufacturers, new TableRow.LayoutParams(
+                            TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+                    tr.addView(ManufacturerCountry, new TableRow.LayoutParams(
+                            TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+                    tr.addView(Price, new TableRow.LayoutParams(
+                            TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+                    MI.addView(tr);
 
                     NameMI.setText(resultSet.getString(2));
                     ManufacturersMI.setText(resultSet.getString(3));
